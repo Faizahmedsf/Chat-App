@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: server
+  description: loopback Microservic
+  annotations:
+    github.com/project-slug: faizahmedsf/server
+    backstage.io/techdocs-ref: dir:../
+spec:
+  type: website
+  lifecycle: experimental
+  owner: faizahmedsf

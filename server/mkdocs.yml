@@ -1,0 +1,8 @@
+site_name: server
+site_description: loopback Microservic
+
+nav:
+  - Introduction: README.md
+
+plugins:
+  - techdocs-core
