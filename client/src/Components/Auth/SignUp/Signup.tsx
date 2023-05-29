@@ -8,7 +8,7 @@ import { Sign } from "crypto";
 const validate = (values: IError) => {
   const errors:IError = {
         email: "",  
-        userName: "",
+        username: "",
         password: ""
   };
 
@@ -19,10 +19,10 @@ const validate = (values: IError) => {
   }
  
 
-  if (!values.userName) {
-    errors.userName = "UserName is Required";
-  } else if (!/^[a-zA-Z]+$/.test(values.userName)) {
-    errors.userName = "Only Alphabetic Name Allowed";
+  if (!values.username) {
+    errors.username = "username is Required";
+  } else if (!/^[a-zA-Z]+$/.test(values.username)) {
+    errors.username = "Only Alphabetic Name Allowed";
   }
 
   if (!values.password) {
@@ -39,7 +39,7 @@ function Signup() {
   const signupFormik = useFormik({
     initialValues: {
       email: "",
-      userName: "",
+      username: "",
       password: "",
     },
 
@@ -136,20 +136,20 @@ function Signup() {
               </div>
 
               <div className="form-group">
-                <label htmlFor="exampleInputPassword1">UserName</label>
+                <label htmlFor="exampleInputPassword1">username</label>
                 <input
                   type="text"
                   placeholder="John Doe"
                   className="form-control"
                   id="exampleInputPassword1"
-                  name="userName"
-                  value={signupFormik.values.userName}
+                  name="username"
+                  value={signupFormik.values.username}
                   onChange={signupFormik.handleChange}
                   onBlur={signupFormik.handleBlur}
                 />
-                {signupFormik.errors.userName &&
-                signupFormik.touched.userName ? (
-                  <div className="errors"> {signupFormik.errors.userName} </div>
+                {signupFormik.errors.username &&
+                signupFormik.touched.username ? (
+                  <div className="errors"> {signupFormik.errors.username} </div>
                 ) : null}
               </div>
 

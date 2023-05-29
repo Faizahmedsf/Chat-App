@@ -1,6 +1,6 @@
 export interface IError {
-    email: string
-    userName?: string,
+    email?: string
+    username?: string,
     password: string
 }
 

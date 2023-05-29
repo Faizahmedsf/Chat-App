@@ -1,5 +1,5 @@
 import {ApplicationConfig} from '@loopback/core';
-import {ChatApplication} from './application';
+import {ChatServiceApplication} from './application';
 
 const ARGV_INDEX = 2;
 /**
@@ -13,7 +13,7 @@ async function exportOpenApiSpec(): Promise<void> {
     },
   };
   const outFile = process.argv[ARGV_INDEX] ?? './src/openapi.json';
-  const app = new ChatApplication(config);
+  const app = new ChatServiceApplication(config);
   await app.boot();
   await app.exportOpenApiSpec(outFile);
 }
@@ -23,9 +23,6 @@ exportOpenApiSpec()
     process.exit(0);
   })
   .catch(err => {
-    console.error(
-      'Fail to export OpenAPI spec from the application.',
-      err,
-    );
+    console.error('Fail to export OpenAPI spec from the application.', err);
     process.exit(1);
   });
