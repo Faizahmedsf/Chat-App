@@ -6,13 +6,13 @@ import { IError } from "../../../Interface/auth.interface";
 // formik config
 const validate = (values: IError) => {
   const errors: IError = {
-    email: "",
+    username: "",
     password: "",
   };
-  if (!values.email) {
-    errors.email = "Email is Required";
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = "Invalid email address";
+  if (!values.username) {
+    errors.username = "username is Required";
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.username)) {
+    errors.username = "Invalid username address";
   }
 
 
@@ -25,26 +25,50 @@ const validate = (values: IError) => {
   return errors;
 };
 
-function Login() {
+function Login(this: any) {
   const loginFormik = useFormik({
     initialValues: {
-      email: "",
+      username: "",
       password: "",
     },
 
     validate,
 
-    onSubmit: async (values: any) => {
-      await console.log("Login values");
-      // const res: Response = await fetch("http://localhost:8001/login", {
-      //   method: "POST",
-      //   body: JSON.stringify(values),
-      //   headers: { "Content-Type": "application/json" },
-      // });
-
-      
+    onSubmit: async (values: IError) => {
+      console.log("Login values");
+      const res = await fetch("http://localhost:3000/auth/login-token", {
+        method: "POST",
+        body: JSON.stringify({
+          "client_id": "test_client_id",
+          "client_secret": "test_client_secret",
+          "username": values.username,
+          "password": values.password
+        }),
+      })
     },
   });
+
+
+  const loginviaGoogle = (url: string, body: any) =>  {
+    console.log("hello");
+    
+    const myform = document.createElement('form');
+    myform.method = 'POST';
+    myform.action = url;
+    myform.style.display = 'none';
+    myform.append('Content-Type', 'application/x-www-form-urlencoded');
+    Object.keys(body).forEach((key) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = body[key];
+      myform.appendChild(input);
+    });
+    document.body.appendChild(myform);
+    myform.submit();
+  }
+
+
   return (
     <div>
       <div className="page-breadcrumb">
@@ -52,22 +76,7 @@ function Login() {
       </div>
 
       <div className="auth container">
-        <nav>
-          <div className="nav nav-tabs" id="nav-tab" role="tablist">
-            <button
-              className="nav-link active"
-              id="nav-home-tab"
-              data-toggle="tab"
-              data-target="#nav-home"
-              type="button"
-              role="tab"
-              aria-controls="nav-home"
-              aria-selected="true"
-            >
-              Login
-            </button>
-          </div>
-        </nav>
+       
         <div className="tab-content" id="nav-tabContent">
           <div
             className="tab-pane fade show active"
@@ -77,18 +86,18 @@ function Login() {
           >
             <form className="login-form" onSubmit={loginFormik.handleSubmit}>
               <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Email</label>
+                <label htmlFor="exampleInputPassword1">username</label>
                 <input
-                  type="email"
+                  type="text"
                   placeholder="John.doe@mail.com"
                   className="form-control"
-                  name="email"
-                  value={loginFormik.values.email}
+                  name="username"
+                  value={loginFormik.values.username}
                   onChange={loginFormik.handleChange}
                   onBlur={loginFormik.handleBlur}
                 />
-                {loginFormik.errors.email && loginFormik.touched.email ? (
-                  <div className="errors"> {loginFormik.errors.email} </div>
+                {loginFormik.errors.username && loginFormik.touched.username ? (
+                  <div className="errors"> {loginFormik.errors.username} </div>
                 ) : null}
               </div>
 
@@ -111,9 +120,14 @@ function Login() {
 
 
                 <div className="col-md-3">
-                  <button type="submit" className="btn btn-dark">
+                  <button type="submit" className="btn btn-dark" >
                     Login
                   </button>
+                  
+                  <button type="submit" className="btn btn-success mx-2"  onClick={() => loginviaGoogle}>
+                    Login Via Google
+                  </button>
+
                 </div>
                 
 

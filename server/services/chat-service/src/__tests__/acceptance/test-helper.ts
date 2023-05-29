@@ -1,4 +1,4 @@
-import {ChatApplication} from '../..';
+import {ChatServiceApplication} from '../..';
 import {
   createRestAppClient,
   givenHttpServerConfig,
@@ -15,14 +15,10 @@ export async function setupApplication(): Promise<AppWithClient> {
   });
   setUpEnv();
 
-  const app = new ChatApplication({
+  const app = new ChatServiceApplication({
     rest: restConfig,
   });
 
-      
-
-  
-  
   await app.boot();
   await app.start();
 
@@ -35,9 +31,9 @@ function setUpEnv() {
   process.env.NODE_ENV = 'test';
   process.env.ENABLE_TRACING = '0';
   process.env.ENABLE_OBF = '0';
-  }
+}
 
 export interface AppWithClient {
-  app: ChatApplication;
+  app: ChatServiceApplication;
   client: Client;
 }

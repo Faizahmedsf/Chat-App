@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "chat",
+    "title": "chat-service",
     "version": "1.0.0",
-    "description": "chat",
+    "description": "chat-service",
     "contact": {
       "name": "Faizahmedsf",
       "email": "121433435+Faizahmedsf@users.noreply.github.com"

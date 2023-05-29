@@ -42,7 +42,6 @@ function Header() {
 
                     <form className="form-inline my-2 my-lg-0">
                         <button className="btn btn-success m-2 my-sm-0" type="submit"> <Link to="/login"> Login </Link> </button>
-                        <button className="btn btn-primary m-2 my-sm-0" type="submit"> <Link to="/signup"> SignUp </Link> </button>
                         <button className="btn btn-danger m-2 my-sm-0" type="submit" onClick={logOutuser}>  Logout  </button>
     
                         </form>

@@ -1123,7 +1123,7 @@
             }
           }
         },
-        "description": "\n\n| Permissions |\n| ------- |\n| owner   |\n",
+        "description": "",
         "operationId": "PingController.ping"
       }
     },

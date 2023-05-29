@@ -2,7 +2,7 @@ import {ApplicationConfig, SocketioServiceApplication} from './application';
 
 export * from './application';
 
-const PORT = 3000;
+const PORT = 3002;
 
 export async function main(options: ApplicationConfig = {}) {
   const app = new SocketioServiceApplication(options);

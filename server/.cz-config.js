@@ -24,7 +24,9 @@ module.exports = {
     {value: 'WIP', name: 'WIP:      Work in progress'},
   ],
 
-  scopes: [
+  scopes: [{name: 'notification-service'}, 
+{name: 'chat-service-service'}, 
+
 {name: 'socketio-service-service'}, 
 {name: 'notification-facade'}, 
 {name: 'authentication-service'}, 

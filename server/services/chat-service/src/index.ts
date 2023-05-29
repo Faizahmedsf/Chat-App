@@ -1,11 +1,11 @@
-import {ApplicationConfig, ChatApplication} from './application';
+import {ApplicationConfig, ChatServiceApplication} from './application';
 
 export * from './application';
 
-const PORT = 3000;
+const PORT = 3001;
 
 export async function main(options: ApplicationConfig = {}) {
-  const app = new ChatApplication(options);
+  const app = new ChatServiceApplication(options);
   await app.boot();
   await app.start();
 

@@ -39,7 +39,7 @@ export class PingController {
   ) {}
 
   // Map to `GET /ping`
-  @authorize({permissions: ['owner']})
+  @authorize({permissions: ['*']})
   @get('/ping', {
     responses: {
       [STATUS_CODE.OK]: PING_RESPONSE,

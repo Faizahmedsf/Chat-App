@@ -20,7 +20,7 @@ import {
   BearerVerifierType,
   SECURITY_SCHEME_SPEC,
 } from '@sourceloop/core';
-import {ChatServiceComponent} from '@sourceloop/chat-service'
+import {ChatServiceComponent} from '@sourceloop/chat-service';
 import {RepositoryMixin} from '@loopback/repository';
 import {RestApplication} from '@loopback/rest';
 import {ServiceMixin} from '@loopback/service-proxy';
@@ -29,11 +29,11 @@ import * as openapi from './openapi.json';
 
 export {ApplicationConfig};
 
-export class ChatApplication extends BootMixin(
+export class ChatServiceApplication extends BootMixin(
   ServiceMixin(RepositoryMixin(RestApplication)),
 ) {
   constructor(options: ApplicationConfig = {}) {
-    const port = 3000;
+    const port = 3001;
     dotenv.config();
     dotenvExt.load({
       schema: '.env.example',
@@ -69,14 +69,13 @@ export class ChatApplication extends BootMixin(
       swaggerPassword: process.env.SWAGGER_PASSWORD,
     });
 
-
     // Set up the custom sequence
     this.sequence(ServiceSequence);
 
     // Add authentication component
     this.component(AuthenticationComponent);
 
-  this.component(ChatServiceComponent);
+    this.component(ChatServiceComponent);
 
     // Add bearer verifier component
     this.bind(BearerVerifierBindings.Config).to({
@@ -99,7 +98,6 @@ export class ChatApplication extends BootMixin(
 
     this.component(RestExplorerComponent);
 
-
     this.projectRoot = __dirname;
     // Customize @loopback/boot Booter Conventions here
     this.bootOptions = {
@@ -114,7 +112,7 @@ export class ChatApplication extends BootMixin(
     this.api({
       openapi: '3.0.0',
       info: {
-        title: 'chat',
+        title: 'chat-service',
         version: '1.0.0',
       },
       paths: {},

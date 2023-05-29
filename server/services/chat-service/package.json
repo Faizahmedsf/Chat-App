@@ -1,7 +1,7 @@
 {
-    "name": "-chat",
+    "name": "-chat-service",
     "version": "0.0.1",
-    "description": "chat",
+    "description": "chat-service",
     "keywords": [
         "loopback-microservice",
         "loopback"
@@ -26,7 +26,7 @@
         "posttest": "npm run lint",
         "test:dev": "lb-mocha --allow-console-logs dist/__tests__/**/*.js && npm run posttest",
         "docker:build": "DOCKER_BUILDKIT=1 sudo docker build --build-arg NR_ENABLED=$NR_ENABLED_VALUE -t $IMAGE_REPO_NAME/-$npm_package_name:$npm_package_version .",
-        "docker:run": "docker run -p 3000:3000 -d chat",
+        "docker:run": "docker run -p 3000:3000 -d chat-service",
         "symlink-resolver": "symlink-resolver",
         "resolve-links": "npm run symlink-resolver build ./node_modules/@local",
         "premigrate": "npm run build",
